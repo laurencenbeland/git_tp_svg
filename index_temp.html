@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="html/css" href="styles/style.css">
 </head>
 <body>
 
-<p>newiufew</p>
+<h2>Plan</h2>
+
+<input type="color" value="#000000" id="couleurPicker"> <br />
+
+<svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" id="svg">
+
+    <circle cx="50" cy="50" r="25" fill="white" stroke="black" id="circle0"/>
+</svg>
+
+<img id="bg" alt="fond"/>
+
+<div id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+    Deposer les fichiers ici...
+    <div id="clickHere">
+        ou clicker ici..
+        <input type="file" id="fichier" name="imgfond" accept=".jpg, .jpeg, .png" />
+    </div>
+</div>
+<script src='script/main.js'></script>
 </body>
 </html>
