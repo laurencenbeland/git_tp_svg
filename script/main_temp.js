@@ -43,8 +43,8 @@ imageInput.addEventListener('change', function () {
     reader.readAsDataURL( fichier[0] );
     reader.onloadend = function(){
 
-        console.log(this.result);
-        bg.setAttribute("src", this.result);
+        //console.log(this.result);
+        document.getElementById("bgImg").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.result);
 
     }
 });
@@ -61,9 +61,15 @@ function dropHandler(ev) {
             // If dropped items aren't files, reject them
             if (ev.dataTransfer.items[i].kind === 'file') {
                 let file = ev.dataTransfer.items[i].getAsFile();
-                console.log('... file[' + i + '].name = ' + file.name);
 
-                bg.setAttribute("src",  ev.dataTransfer.files[i].name);
+                let reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onloadend = function(){
+
+                    //console.log(this.result);
+                    document.getElementById("bgImg").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.result);
+
+                }
             }
         }
     } else {
