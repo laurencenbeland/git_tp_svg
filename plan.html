@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="style/main.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="menu_bar">
+    <img id="objet" src="images/chair.svg" draggable="true" ondragstart="drag(event)">
+</div>
+
+<div id="background">
+    <div id="container-svg">
+        <svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ondrop="drop(event)" ondragover="dragover(event)" onload="makeDraggable(event)">
+
+        </svg>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+<script src="script/drag_drop.js"></script>
+</body>
+</html>

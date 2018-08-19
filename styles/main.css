@@ -1,0 +1,39 @@
+html,body{
+    margin:0;
+    padding:0;
+    height: 100%;
+}
+
+#menu_bar{
+    float:left;
+    background-color: grey;
+    width: 20%;
+    height: 100%;
+}
+
+#menu_bar img{
+    display: inline-block;
+    width: 100%;
+    height: auto;
+}
+
+#background{
+    float: right;
+    background-color: black;
+    width: 80%;
+    height: 100%;
+}
+
+#container-svg{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#background svg{
+    margin: 0 auto;
+    width: 80%;
+    height: 80%;
+    display: block;
+    background-color: green;
+}
