@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="style/main.css"/>
+        <link rel="stylesheet" href="styles/style_stageplanner.css"/>
+        <link rel="stylesheet" type="html/css" href="styles/style.css">
         <title>Title</title>
     </head>
     <body>
@@ -17,15 +18,51 @@
         
         <!-- MAIN -->
         <main>
-            <h1>YOOOO</h1>
-            <!-- SVG -->
-            <svg id="svg" width="500" height="500" xmlns="http://www.w3.org/2000/svg">
-                <g>
-                
-                </g>
-            </svg>
-            <!-- END SVG -->
             
+            <section id="section">
+                
+                <!-- MENU -->
+                <div id="menu">
+                    
+                    <!-- PLAN -->
+                    <div id="arriereplan">
+                        <label>Choix d'arrière plan</label>
+                        <input type="color" value="#000000" id="couleurPicker">
+                        
+                        <div id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+                            Déposer les fichiers ici...
+                            <div id="clickHere">
+                                ou clicker ici..
+                                <input type="file" id="fichier" name="imgfond" accept=".jpg, .jpeg, .png" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PLAN -->
+                    
+                    <!-- OBJETS -->
+                    <div>
+                        <label>Ajouter vos objets</label>
+                    
+                    
+                    
+                    </div>
+                    <!-- END OBJETS -->
+                
+                </div>
+                <!-- END MENU -->
+                
+                <!-- SVG -->
+                <svg viewBox="0 0 150 150" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" id="svg">
+                    
+                    <!-- BACKGROUND IMG -->
+                    <image id="bgImg" xlink:href=""/>
+                    <!-- END BACKGROUND IMG -->
+                
+                </svg>
+                <!-- END SVG -->
+            
+            </section>
+        
         </main>
         <!-- END MAIN -->
         
