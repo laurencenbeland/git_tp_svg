@@ -132,6 +132,7 @@ function dragover(evt){
 function drop(evt){
     evt.preventDefault();
     let valeur = evt.dataTransfer.getData('text/plain');
+    let supprimerBtn = document.createElementNS("http://www.w3.org/2000/svg", "use");
     let image = document.createElementNS("http://www.w3.org/2000/svg", "use");
     let libelle = document.createElementNS("http://www.w3.org/2000/svg", "text");
     let index  = valeur.indexOf('images');
@@ -143,8 +144,13 @@ function drop(evt){
     let posX = pos.x ;
     let posY = pos.y;
 
-    //libelle
+    //delete
+    supprimerBtn.setAttributeNS('http://www.w3.org/1999/xlink', 'href', "images/delete_icon.svg#delete_icon");
+    supprimerBtn.setAttributeNS(null,"id", "delete_icon" + compteur);
+    supprimerBtn.setAttributeNS(null,"x", posX - 30);
+    supprimerBtn.setAttributeNS(null,"y", posY - 30);
 
+    //libelle
     libelle.setAttributeNS(null,"x", ""+posX);
     libelle.setAttributeNS(null,"y", ""+posY);
     libelle.setAttributeNS(null,"font-size",30);
@@ -159,9 +165,15 @@ function drop(evt){
     image.setAttributeNS(null,"y", ""+posY);
     image.setAttributeNS(null,"class", "draggable");
 
+    svg.appendChild(supprimerBtn);
     svg.appendChild(image);
-    svg.appendChild(libelle);
+    //svg.appendChild(libelle);
     compteur++;
+
+    supprimerBtn.addEventListener("click", function() {
+        supprimerBtn.remove();
+        image.remove();
+    });
 
 }
 
@@ -194,15 +206,17 @@ function makeDraggable(evt) {
     svgElem.addEventListener('mouseup', endDrag);
     svgElem.addEventListener('mouseleave', endDrag);
 
-    let selectedElement, selectedElement2, offset, transform, transform2;
+    let selectedElement, selectedElement2,selectedElementDelete, offset, transform, transform2, transform3;
     function startDrag(evt) {
         if (evt.target.classList.contains('draggable')) {
             selectedElement = evt.target;
-            selectedElement2 = evt.target.nextSibling;
+            //selectedElement2 = evt.target.nextSibling;
+            selectedElementDelete = evt.target.previousSibling;
             offset = getMousePosition(evt);
             // Get all the transforms currently on this element
             let transforms = selectedElement.transform.baseVal;
-            let transforms2 = selectedElement2.transform.baseVal;
+            //let transforms2 = selectedElement2.transform.baseVal;
+            let transforms3 = selectedElementDelete.transform.baseVal;
             // Ensure the first transform is a translate transform
             if (transforms.length === 0 || transforms.getItem(0).type !== SVGTransform.SVG_TRANSFORM_TRANSLATE) {
                 // Create an transform that translates by (0, 0)
@@ -210,14 +224,18 @@ function makeDraggable(evt) {
                 translate.setTranslate(0, 0);
                 // Add the translation to the front of the transforms list
                 selectedElement.transform.baseVal.insertItemBefore(translate, 0);
-                selectedElement2.transform.baseVal.insertItemBefore(translate, 0);
+                //selectedElement2.transform.baseVal.insertItemBefore(translate, 0);
+                selectedElementDelete.transform.baseVal.insertItemBefore(translate, 0);
             }
             // Get initial translation amount
             transform = transforms.getItem(0);
-            transform2 = transforms2.getItem(0);
+            //transform2 = transforms2.getItem(0);
+            transform3 = transforms3.getItem(0);
 
             offset.x -= transform.matrix.e;
             offset.y -= transform.matrix.f;
+
+
         }
     }
 
@@ -226,11 +244,13 @@ function makeDraggable(evt) {
             evt.preventDefault();
             let coord = getMousePosition(evt);
             transform.setTranslate(coord.x - offset.x, coord.y - offset.y);
-            transform2.setTranslate(coord.x - offset.x, coord.y - offset.y);
+            //transform2.setTranslate(coord.x - offset.x, coord.y - offset.y);
+            transform3.setTranslate(coord.x - offset.x, coord.y - offset.y);
         }
     }
     function endDrag(evt) {
         selectedElement = null;
-        selectedElement2 = null;
+        //selectedElement2 = null;
+        selectedElementDelete = null;
     }
 }

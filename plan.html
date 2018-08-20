@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="style/main.css" rel="stylesheet"/>
+    <link href="styles/main.css" rel="stylesheet"/>
 </head>
 <body>
 <div id="menu_bar">
-    <img id="objet" src="images/chair.svg" draggable="true" ondragstart="drag(event)">
     <input type="color" value="#000000" id="couleurPicker"> <br />
 
     <div id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
@@ -17,6 +16,8 @@
             <input type="file" id="fichier" name="imgfond" accept=".jpg, .jpeg, .png" />
         </div>
     </div>
+
+    <img id="objet" src="images/chair.svg" draggable="true" ondragstart="drag(event)">
 </div>
 
 <div id="background">
