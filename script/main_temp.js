@@ -5,7 +5,6 @@ let c = document.getElementById("circle0");
 let couleurPicker;
 let defaultColor = "#0000ff";
 let imageInput = document.getElementById("fichier");
-let bg = document.getElementById("bg");
 let svg= document.getElementById("svg");
 
 window.addEventListener("load", startup, false);
