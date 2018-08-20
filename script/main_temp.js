@@ -43,8 +43,9 @@ imageInput.addEventListener('change', function () {
     reader.onloadend = function(){
 
         //console.log(this.result);
-        document.getElementById("bgImg").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.result);
-
+        //document.getElementById("bgImg").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.result);
+        svg.style.backgroundImage = "url(" + this.result +")";
+        svg.style.backgroundSize = "contain";
     }
 });
 
@@ -66,8 +67,10 @@ function dropHandler(ev) {
                 reader.onloadend = function(){
 
                     //console.log(this.result);
-                    document.getElementById("bgImg").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.result);
+                    //document.getElementById("bgImg").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.result);
 
+                    svg.style.backgroundImage = "url(" + this.result +")";
+                    svg.style.backgroundSize = "contain";
                 }
             }
         }
