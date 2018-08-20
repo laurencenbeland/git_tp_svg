@@ -46,6 +46,7 @@ imageInput.addEventListener('change', function () {
         //document.getElementById("bgImg").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.result);
         svg.style.backgroundImage = "url(" + this.result +")";
         svg.style.backgroundSize = "contain";
+        svg.style.backgroundRepeat = "no-repeat";
     }
 });
 
@@ -71,6 +72,7 @@ function dropHandler(ev) {
 
                     svg.style.backgroundImage = "url(" + this.result +")";
                     svg.style.backgroundSize = "contain";
+                    svg.style.backgroundRepeat = "no-repeat";
                 }
             }
         }
