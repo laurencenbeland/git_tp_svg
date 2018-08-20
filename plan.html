@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="styles/main.css" rel="stylesheet"/>
+    <link href="style/main.css" rel="stylesheet"/>
 </head>
 <body>
 <div id="menu_bar">
     <img id="objet" src="images/chair.svg" draggable="true" ondragstart="drag(event)">
+    <input type="color" value="#000000" id="couleurPicker"> <br />
+
+    <div id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+        Deposer les fichiers ici...
+        <div id="clickHere">
+            ou clicker ici..
+            <input type="file" id="fichier" name="imgfond" accept=".jpg, .jpeg, .png" />
+        </div>
+    </div>
 </div>
 
 <div id="background">
@@ -18,6 +27,6 @@
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
-<script src="script/drag_drop.js"></script>
+<script src="script/main_temp.js"></script>
 </body>
 </html>
