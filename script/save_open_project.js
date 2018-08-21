@@ -35,16 +35,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // NOUVEAU PLAN
     btn_nouveau_projet.addEventListener("click", function(evt){
+       document.getElementById("svg").innerHTML = "";
 
     });
 
     // SAVE PLAN
     btn_save.addEventListener("click", function(evt) {
 
-        if(localStorage.getItem(input_nom_projet) !== null && input_nom_projet === "" && input_nom_projet === select_projet.value) {
+        if(localStorage.getItem(select_projet.value) !== null) {
 
             let new_svg = document.getElementById("container-svg").innerHTML;
-            localStorage.setItem(input.value, new_svg)
+            localStorage.setItem(select_projet.value, new_svg);
+
 
         } else {
 
@@ -77,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("container-svg").innerHTML = value;
         console.log("value : ", value);
 
-        input.value = key;
+        input.value = " ";
 
         // for(let i = 1; i < options.length; i++){
         //     if(options[i].selected){
