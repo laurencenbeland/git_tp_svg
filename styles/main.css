@@ -6,7 +6,7 @@ html,body{
 
 #menu_bar{
     float:left;
-    background-color: grey;
+    background-color: #5b5c5e;
     width: 20%;
     height: 100%;
 }
@@ -36,4 +36,11 @@ html,body{
     height: 80%;
     display: block;
     background-color: white;
+}
+
+#plan, #listImages {
+    position: relative;
+    height: 50%;
+    border-style: outset;
+    border-color: #353638;
 }
