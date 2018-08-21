@@ -29,6 +29,25 @@ body {
     margin: 50px auto;
 }
 
+.btn-green2 {
+    background-color: #00a64e;
+    color: #FFFFFF;
+    font-weight: bold;
+    display: block;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.btn-green2:hover {
+    background-color: #f1f1f1;
+    color: #00a64e;
+    border: 2px solid #00a64e;
+    font-weight: bold;
+    display: block;
+    margin: 5px;
+
+}
+
 .vertical-center {
     min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
     min-height: 100vh; /* These two lines are counted as one :-)       */
@@ -41,8 +60,30 @@ body {
 /****** STAGE PLANNER.html ******/
 
 /* SAVE PLAN (menu) */
-#top_menu ul {
+#top_menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px;
+}
 
+#top_menu img {
+
+}
+
+#top_menu ul{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+    width: 90%;
+}
+
+#top_menu ul li{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
 }
 
 #section_plan{
