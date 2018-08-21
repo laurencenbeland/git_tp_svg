@@ -163,8 +163,7 @@ function drop(evt){
 
         //image
         let elements = document.getElementsByClassName("draggable");
-        image.setAttributeNS('http://www.w3.org/1999/xlink', 'href', strOut + "#chair");
-        image.setAttributeNS(null,"id", "chair" + compteur);
+        image.setAttributeNS('http://www.w3.org/1999/xlink', 'href', strOut + "#objet");
         image.setAttributeNS(null,"x", ""+posX);
         image.setAttributeNS(null,"y", ""+posY);
         image.setAttributeNS(null,"class", "draggable");
