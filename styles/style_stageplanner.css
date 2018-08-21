@@ -40,7 +40,7 @@ body {
 
 /****** STAGE PLANNER.html ******/
 
-#section{
+#section_plan{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
