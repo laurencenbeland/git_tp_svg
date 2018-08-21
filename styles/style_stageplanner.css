@@ -40,6 +40,11 @@ body {
 
 /****** STAGE PLANNER.html ******/
 
+/* SAVE PLAN (menu) */
+#top_menu ul {
+
+}
+
 #section_plan{
     display: flex;
     flex-direction: row;
@@ -47,7 +52,8 @@ body {
     height: 500px;
 }
 
-/* MENU */
+
+/* MENU (objets) */
 
 #menu{
     width: 30%;
@@ -60,9 +66,15 @@ label{
     display: block;
 }
 
-/* PLAN */
-
-#svg{
-    margin: 10px;
+.border{
+    border: 4px solid black;
+    border-radius: 5px;
+    margin: 4px;
+    padding: 4px;
 }
 
+/* PLAN */
+
+#svg_div{
+    width:100%;
+}
