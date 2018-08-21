@@ -6,6 +6,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
+
     let select_projet = document.getElementById("select_projet");
 
     let btn_nouveau_projet = document.getElementById("btn_nouveau_projet");
@@ -15,10 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let btn_reset = document.getElementById("btn_reset");
 
     let input = document.getElementById("input_nom_projet");
-    let input_nom_projet = input.value;
+    let input_nom_projet = " ";
 
     // INIT select list
     function init_options(){
+
+        // Liste des projets (select)
         for(let i = 0; i < localStorage.length; i++) {
             let key = localStorage.key(i);
             //let value = localStorage[key];
@@ -28,6 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
             opt.innerHTML = key;
             select_projet.appendChild(opt);
         }
+
+        //
+
     }
 
     // initialiser la liste des projets sauvegardés dès l'ouverture de la page
@@ -35,8 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // NOUVEAU PLAN
     btn_nouveau_projet.addEventListener("click", function(evt){
-       document.getElementById("svg").innerHTML = "";
-
+        // effacer svg content
+        // ajouter fond blanc ?
     });
 
     // SAVE PLAN
@@ -47,8 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
             let new_svg = document.getElementById("container-svg").innerHTML;
             localStorage.setItem(select_projet.value, new_svg);
 
-
         } else {
+
+            input_nom_projet = input.value;
 
             let opt = document.createElement("option");
 
@@ -81,20 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         input.value = " ";
 
-        // for(let i = 1; i < options.length; i++){
-        //     if(options[i].selected){
-        //         let key = options[i].value;
-        //         console.log("ouvrir plan clické", key);
-        //         //console.log("options[o] : ", options[i]);
-        //         console.log("key :", key);
-        //         let value = localStorage.getItem(key);
-        //
-        //         document.getElementById("svg_div").innerHTML = value;
-        //         console.log("value : ", value);
-        //
-        //     }
-        // }
-
     });
 
     btn_remove.addEventListener("click", function(evt){
@@ -102,23 +95,27 @@ document.addEventListener("DOMContentLoaded", function () {
         let key = select_projet.value;
         localStorage.removeItem(key);
 
-        // for(let i = 1; i < options.length; i++) {
-        //     if(options[i].selected) {
-        //         let key = options[i].value;
-        //         localStorage.removeItem(key);
-        //     }
-        // }
-        //
-
         remove_projet_from_select();
 
     });
 
     btn_reset.addEventListener("click", function(evt){
 
+        console.log("RESET AVANT : ", document.getElementById("container-svg").innerHTML);
+
+        let container_svg = document.getElementById("container-svg");
+        container_svg.innerHTML = '<svg viewBox="0 0 150 150" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" id="svg"><image id="bgImg" xlink:href="" style="width: 100%; height: 100%"/></svg>';
+
+        // fond blanc automatique
+        let bg = document.getElementById("background");
+        bg.style.backgroundColor = "#FFFFFF";
+
+        console.log("RESET APRÈS : ", document.getElementById("container-svg").innerHTML);
+
     });
 
 });
+
 
 function remove_projet_from_select(){
     if(!select_projet.options[0].selected){
