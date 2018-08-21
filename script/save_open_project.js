@@ -1,18 +1,21 @@
 "use strict";
 
-
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// appliquer une fonction init pour les listeners sur les objets
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 document.addEventListener("DOMContentLoaded", function () {
 
     let select_projet = document.getElementById("select_projet");
-    let options = document.getElementsByTagName("option");
 
+    let btn_nouveau_projet = document.getElementById("btn_nouveau_projet");
     let btn_open = document.getElementById("btn_open");
     let btn_save = document.getElementById("btn_save");
     let btn_remove = document.getElementById("btn_remove");
+    let btn_reset = document.getElementById("btn_reset");
 
-    // initialiser la liste des projets sauvegardés dès l'ouverture de la page
-    init_options();
+    let input = document.getElementById("input_nom_projet");
+    let input_nom_projet = input.value;
 
     // INIT select list
     function init_options(){
@@ -24,28 +27,26 @@ document.addEventListener("DOMContentLoaded", function () {
             opt.value = key;
             opt.innerHTML = key;
             select_projet.appendChild(opt);
-            //if(value.equals(desired_value))
-            //    console.log(key + " => " + value);
         }
     }
+
+    // initialiser la liste des projets sauvegardés dès l'ouverture de la page
+    init_options();
+
+    // NOUVEAU PLAN
+    btn_nouveau_projet.addEventListener("click", function(evt){
+
+    });
 
     // SAVE PLAN
     btn_save.addEventListener("click", function(evt) {
 
-        let input = document.getElementById("input_nom_projet");
-        let select_projet = document.getElementById("select_projet");
-
-        console.log("select selected : ", select_projet.selected.value);
-
-        if(localStorage.getItem(input.value) !== null && input.value === "" && input.value === select_projet.selected) {
+        if(localStorage.getItem(input_nom_projet) !== null && input_nom_projet === "" && input_nom_projet === select_projet.value) {
 
             let new_svg = document.getElementById("svg_div").innerHTML;
             localStorage.setItem(input.value, new_svg)
 
         } else {
-
-            let input_nom_projet = input.value;
-            console.log ("nom projet : ", input_nom_projet);
 
             let opt = document.createElement("option");
 
@@ -68,40 +69,61 @@ document.addEventListener("DOMContentLoaded", function () {
 
     btn_open.addEventListener("click", function(evt){
 
+        let key = select_projet.value;
+        console.log("key is open :", key);
 
-        for(let i = 1; i < options.length; i++){
-            if(options[i].selected){
-                let key = options[i].value;
-                console.log("ouvrir plan clické", key);
-                //console.log("options[o] : ", options[i]);
-                console.log("key :", key);
-                let value = localStorage.getItem(key);
+        let value = localStorage.getItem(key);
 
-                document.getElementById("svg_div").innerHTML = value;
-                console.log("value : ", value);
+        document.getElementById("svg_div").innerHTML = value;
+        console.log("value : ", value);
 
-            }
-        }
+        input.value = key;
+
+        // for(let i = 1; i < options.length; i++){
+        //     if(options[i].selected){
+        //         let key = options[i].value;
+        //         console.log("ouvrir plan clické", key);
+        //         //console.log("options[o] : ", options[i]);
+        //         console.log("key :", key);
+        //         let value = localStorage.getItem(key);
+        //
+        //         document.getElementById("svg_div").innerHTML = value;
+        //         console.log("value : ", value);
+        //
+        //     }
+        // }
+
     });
 
     btn_remove.addEventListener("click", function(evt){
 
-        for(let i = 1; i < options.length; i++) {
-            if(options[i].selected) {
-                let key = options[i].value;
-                localStorage.removeItem(key);
-            }
-        }
+        let key = select_projet.value;
+        localStorage.removeItem(key);
+
+        // for(let i = 1; i < options.length; i++) {
+        //     if(options[i].selected) {
+        //         let key = options[i].value;
+        //         localStorage.removeItem(key);
+        //     }
+        // }
+        //
+
         remove_projet_from_select();
+
+    });
+
+    btn_reset.addEventListener("click", function(evt){
 
     });
 
 });
 
 function remove_projet_from_select(){
-    let select_projet = document.getElementById("select_projet");
-    if(select_projet.options[0]){
+    if(!select_projet.options[0].selected){
+        console.log(select_projet.value, " a été retiré du select!");
         select_projet.options[select_projet.selectedIndex] = null ;
+    } else {
+        console.log("tu peux po effacer choisir un projet yo");
     }
 }
 
