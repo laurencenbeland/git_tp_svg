@@ -7,17 +7,22 @@
 </head>
 <body>
 <div id="menu_bar">
-    <input type="color" value="#000000" id="couleurPicker"> <br />
 
-    <div id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-        Deposer les fichiers ici...
-        <div id="clickHere">
-            ou clicker ici..
-            <input type="file" id="fichier" name="imgfond" accept=".jpg, .jpeg, .png" />
+    <div id="plan">
+        <input type="color" value="#000000" id="couleurPicker"> <br />
+
+        <div id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+            Deposer les fichiers ici...
+            <div id="clickHere">
+                ou clicker ici..
+                <input type="file" id="fichier" name="imgfond" accept=".jpg, .jpeg, .png" />
+            </div>
         </div>
     </div>
 
-    <img id="objet" src="images/chair.svg" draggable="true" ondragstart="drag(event)">
+    <div id="listImages">
+        <img id="objet" src="images/platine2.svg" draggable="true" ondragstart="drag(event)">
+    </div>
 </div>
 
 <div id="background">
