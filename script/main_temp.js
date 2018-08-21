@@ -6,6 +6,7 @@ let couleurPicker;
 let defaultColor = "#0000ff";
 let imageInput = document.getElementById("fichier");
 let svg= document.getElementById("svg");
+let elementCourant;
 
 window.addEventListener("load", startup, false);
 
@@ -132,48 +133,69 @@ function dragover(evt){
 function drop(evt){
     evt.preventDefault();
     let valeur = evt.dataTransfer.getData('text/plain');
-    let supprimerBtn = document.createElementNS("http://www.w3.org/2000/svg", "use");
-    let image = document.createElementNS("http://www.w3.org/2000/svg", "use");
-    let libelle = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    let index  = valeur.indexOf('images');
+    if(valeur.includes("images/")){
+        let supprimerBtn = document.createElementNS("http://www.w3.org/2000/svg", "use");
+        let image = document.createElementNS("http://www.w3.org/2000/svg", "use");
+        let libelle = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        let index  = valeur.indexOf('images');
 
-    let strOut = valeur.substr(index);
-    console.log(strOut);
+        let strOut = valeur.substr(index);
+        console.log(strOut);
 
-    let pos = event_to_xy(svg, evt);
-    let posX = pos.x ;
-    let posY = pos.y;
+        let pos = event_to_xy(svg, evt);
+        let posX = pos.x ;
+        let posY = pos.y;
 
-    //delete
-    supprimerBtn.setAttributeNS('http://www.w3.org/1999/xlink', 'href', "images/delete_icon.svg#delete_icon");
-    supprimerBtn.setAttributeNS(null,"id", "delete_icon" + compteur);
-    supprimerBtn.setAttributeNS(null,"x", posX - 30);
-    supprimerBtn.setAttributeNS(null,"y", posY - 30);
+        //delete
+        supprimerBtn.setAttributeNS('http://www.w3.org/1999/xlink', 'href', "images/delete_icon.svg#delete_icon");
+        supprimerBtn.setAttributeNS(null,"id", "delete_icon" + compteur);
+        supprimerBtn.setAttributeNS(null,"x", posX - 30);
+        supprimerBtn.setAttributeNS(null,"y", posY - 30);
+        supprimerBtn.setAttributeNS(null,"visibility", "hidden");
 
-    //libelle
-    libelle.setAttributeNS(null,"x", ""+posX);
-    libelle.setAttributeNS(null,"y", ""+posY);
-    libelle.setAttributeNS(null,"font-size",30);
-    let textNode = document.createTextNode("test");
-    libelle.appendChild(textNode);
+        //libelle
+        libelle.setAttributeNS(null,"x", ""+posX);
+        libelle.setAttributeNS(null,"y", ""+posY);
+        libelle.setAttributeNS(null,"font-size",30);
+        let textNode = document.createTextNode("tergdst");
+        libelle.appendChild(textNode);
 
 
-    //image
-    image.setAttributeNS('http://www.w3.org/1999/xlink', 'href', strOut + "#chair");
-    image.setAttributeNS(null,"id", "chair" + compteur);
-    image.setAttributeNS(null,"x", ""+posX);
-    image.setAttributeNS(null,"y", ""+posY);
-    image.setAttributeNS(null,"class", "draggable");
+        //image
+        let elements = document.getElementsByClassName("draggable");
+        image.setAttributeNS('http://www.w3.org/1999/xlink', 'href', strOut + "#chair");
+        image.setAttributeNS(null,"id", "chair" + compteur);
+        image.setAttributeNS(null,"x", ""+posX);
+        image.setAttributeNS(null,"y", ""+posY);
+        image.setAttributeNS(null,"class", "draggable");
+        image.addEventListener("click", function(event){
+            for(let e of elements){
+                if(e.previousSibling.getAttribute("visibility") === "visible"){
+                    e.previousSibling.setAttribute("visibility", "hidden");
+                }
+            }
+            supprimerBtn.setAttribute("visibility", "visible");
+            elementCourant = image;
+        });
+        for(let e of elements){
+            if(e.previousSibling.getAttribute("visibility") === "visible"){
+                e.previousSibling.setAttribute("visibility", "hidden");
+            }
+        }
+        supprimerBtn.setAttribute("visibility", "visible");
+        elementCourant = image;
 
-    svg.appendChild(supprimerBtn);
-    svg.appendChild(image);
-    //svg.appendChild(libelle);
-    compteur++;
+        svg.appendChild(supprimerBtn);
+        svg.appendChild(image);
+        svg.appendChild(libelle);
+        compteur++;
 
-    supprimerBtn.addEventListener("click", function() {
-        supprimerBtn.remove();
-        image.remove();
-    });
+        supprimerBtn.addEventListener("click", function() {
+            supprimerBtn.remove();
+            image.remove();
+            libelle.remove();
+        });
+    }
 
 }
 
@@ -210,12 +232,12 @@ function makeDraggable(evt) {
     function startDrag(evt) {
         if (evt.target.classList.contains('draggable')) {
             selectedElement = evt.target;
-            //selectedElement2 = evt.target.nextSibling;
+            selectedElement2 = evt.target.nextSibling;
             selectedElementDelete = evt.target.previousSibling;
             offset = getMousePosition(evt);
             // Get all the transforms currently on this element
             let transforms = selectedElement.transform.baseVal;
-            //let transforms2 = selectedElement2.transform.baseVal;
+            let transforms2 = selectedElement2.transform.baseVal;
             let transforms3 = selectedElementDelete.transform.baseVal;
             // Ensure the first transform is a translate transform
             if (transforms.length === 0 || transforms.getItem(0).type !== SVGTransform.SVG_TRANSFORM_TRANSLATE) {
@@ -224,12 +246,12 @@ function makeDraggable(evt) {
                 translate.setTranslate(0, 0);
                 // Add the translation to the front of the transforms list
                 selectedElement.transform.baseVal.insertItemBefore(translate, 0);
-                //selectedElement2.transform.baseVal.insertItemBefore(translate, 0);
+                selectedElement2.transform.baseVal.insertItemBefore(translate, 0);
                 selectedElementDelete.transform.baseVal.insertItemBefore(translate, 0);
             }
             // Get initial translation amount
             transform = transforms.getItem(0);
-            //transform2 = transforms2.getItem(0);
+            transform2 = transforms2.getItem(0);
             transform3 = transforms3.getItem(0);
 
             offset.x -= transform.matrix.e;
@@ -244,13 +266,13 @@ function makeDraggable(evt) {
             evt.preventDefault();
             let coord = getMousePosition(evt);
             transform.setTranslate(coord.x - offset.x, coord.y - offset.y);
-            //transform2.setTranslate(coord.x - offset.x, coord.y - offset.y);
+            transform2.setTranslate(coord.x - offset.x, coord.y - offset.y);
             transform3.setTranslate(coord.x - offset.x, coord.y - offset.y);
         }
     }
     function endDrag(evt) {
         selectedElement = null;
-        //selectedElement2 = null;
+        selectedElement2 = null;
         selectedElementDelete = null;
     }
 }
