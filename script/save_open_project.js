@@ -14,8 +14,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let list_saved_project;
 
+    // INIT select list
+    function init(){
+
+        for(let p of localStorage){
+           // https://stackoverflow.com/questions/3138564/looping-through-localstorage-in-html5-and-javascript
+        }
+
+    }
+
+
     // SAVE PLAN
     btn_save.addEventListener("click", function (evt, input_nom_projet) {
+
+        // effacer tous les projets de la liste
 
         let input = document.getElementById("input_nom_projet");
         input_nom_projet = input.value;
@@ -25,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // localStorage Key, Value
         localStorage.setItem("input_nom_projet", "value");
 
+        // pour le select, ajouter tous les projets
 
     });
 
