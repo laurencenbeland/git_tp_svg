@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if(localStorage.getItem(input_nom_projet) !== null && input_nom_projet === "" && input_nom_projet === select_projet.value) {
 
-            let new_svg = document.getElementById("svg_div").innerHTML;
+            let new_svg = document.getElementById("container-svg").innerHTML;
             localStorage.setItem(input.value, new_svg)
 
         } else {
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
             opt.value = input_nom_projet;
             opt.textContent = input_nom_projet;
 
-            let svg = document.getElementById("svg_div").innerHTML;
+            let svg = document.getElementById("container-svg").innerHTML;
             console.log(svg);
 
             // localStorage Key, Value
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let value = localStorage.getItem(key);
 
-        document.getElementById("svg_div").innerHTML = value;
+        document.getElementById("container-svg").innerHTML = value;
         console.log("value : ", value);
 
         input.value = key;
