@@ -186,7 +186,8 @@ function drop(evt){
 
         svg.appendChild(supprimerBtn);
         svg.appendChild(image);
-        svg.appendChild(libelle);
+        svg.appendChild(libelle)
+        console.log("test");
         compteur++;
 
         supprimerBtn.addEventListener("click", function() {

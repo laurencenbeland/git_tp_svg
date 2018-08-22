@@ -52,39 +52,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // SAVE PLAN
     btn_save.addEventListener("click", function(evt) {
 
-        console.log("btn save clické");
+        save_project();
 
-        let select_value = select_projet.value;
-        input_nom_projet = input.value;
+        // // // // // // // // // // //
+        //       init() listener      //
+        // // // // // // // // // // //
 
-        if(input_nom_projet !== ""){
+        // background
 
-        if(localStorage.getItem(select_value) !== null) {
+        // listener sur le svg : ondrop="drop(event)" ondragover="dragover(event)" onload="makeDraggable(event)
 
-            let new_svg = document.getElementById("container-svg").innerHTML;
-            localStorage.setItem(select_value, new_svg);
+        // listenr sur les objets :  dragndrop, delete, scale, rotate
 
-        } else {
 
-            let opt = document.createElement("option");
-
-            opt.value = input_nom_projet;
-            opt.textContent = input_nom_projet;
-
-            let svg = document.getElementById("container-svg").innerHTML;
-            console.log(svg);
-
-            // localStorage Key, Value
-            if (input_nom_projet.value === "") {
-                alert("Veuillez inscrire un nom de projet.");
-            } else {
-                localStorage.setItem(input_nom_projet, svg)
-                select_projet.add(opt, select_projet.options[select_projet.options.length + 1]);
-                alert("Votre projet est enregistré.");
-            }
-        }
-
-        }
 
     });
 
@@ -116,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //     input.value = " ";
     // });
 
+
     btn_remove.addEventListener("click", function(evt){
 
         let key = select_projet.value;
@@ -125,51 +106,69 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+
     btn_reset.addEventListener("click", function(evt){
 
-        //console.log("RESET AVANT : ", document.getElementById("container-svg").innerHTML);
+        console.log("RESET AVANT : ", document.getElementById("container-svg").innerHTML);
+
+
+        // * * * * * * * * * * * * ** * * * ** * * *
+        // * * * * REVOIR SVG REAPPLIQUE
+        // * * * * * * * * * * * * ** * * * ** * * *
 
         let container_svg = document.getElementById("container-svg");
-        container_svg.innerHTML = '<svg viewBox="0 0 150 150" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" id="svg"><image id="bgImg" xlink:href="" style="width: 100%; height: 100%"/></svg>';
+
+        container_svg.innerHTML = ' <svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ondrop="drop(event)" ondragover="dragover(event)" onload="makeDraggable(event)"><image id="bgImg" xlink:href="" style="width: 100%; height: 100%"/></svg>';
 
         // fond blanc automatique
         let bg = document.getElementById("background");
         bg.style.backgroundColor = "#FFFFFF";
 
-        //console.log("RESET APRÈS : ", document.getElementById("container-svg").innerHTML);
-
-
+        console.log("RESET APRÈS : ", document.getElementById("container-svg").innerHTML);
 
     });
 
+
     function save_project(){
 
-        if(localStorage.getItem(select_projet.value) !== null) {
+        console.log("btn save clické");
+        console.log("RESET AVANT : ", document.getElementById("container-svg").innerHTML);
 
-            let new_svg = document.getElementById("container-svg").innerHTML;
-            localStorage.setItem(select_projet.value, new_svg);
+        let select_value = select_projet.value;
+        input_nom_projet = input.value;
 
-        } else {
+        if(input_nom_projet !== ""){
 
-            input_nom_projet = input.value;
+            if(localStorage.getItem(select_value) !== null) {
 
-            let opt = document.createElement("option");
+                let new_svg = document.getElementById("container-svg").innerHTML;
+                localStorage.setItem(select_value, new_svg);
 
-            opt.value = input_nom_projet;
-            opt.textContent = input_nom_projet;
-
-            let svg = document.getElementById("container-svg").innerHTML;
-            console.log(svg);
-
-            // localStorage Key, Value
-            if (input_nom_projet.value === "") {
-                alert("Veuillez inscrire un nom de projet.");
             } else {
-                localStorage.setItem(input_nom_projet, svg)
-                select_projet.add(opt, select_projet.options[select_projet.options.length + 1]);
-                alert("Votre projet est enregistré.");
+
+                let opt = document.createElement("option");
+
+                opt.value = input_nom_projet;
+                opt.textContent = input_nom_projet;
+
+                let content_to_save = document.getElementById("container-svg").innerHTML;
+                console.log(content_to_save);
+
+                // localStorage Key, Value
+                if (input_nom_projet.value === "") {
+                    alert("Veuillez inscrire un nom de projet.");
+                } else {
+                    localStorage.setItem(input_nom_projet, content_to_save)
+                    select_projet.add(opt, select_projet.options[select_projet.options.length + 1]);
+                    alert("Votre projet est enregistré.");
+                }
             }
+
         }
+        console.log("RESET APRÈS : ", document.getElementById("container-svg").innerHTML);
+
+        brancher_listener();
+
     }
 
     function remove_projet_from_select(){
@@ -181,6 +180,49 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+
+    function brancher_listener(){
+
+        let objet = document.querySelector("#objet");
+        let compteur = 0;
+
+        let svg = document.getElementById("svg");
+        svg.addEventListener("dragover", dragover);
+        svg.addEventListener("drop", drop);
+        svg.addEventListener("onload", makeDraggable);
+
+        svg.addEventListener("drop", dropHandler);
+
+
+        function event_to_xy(elem, ev) {
+            let rect = elem.getBoundingClientRect();
+            return {
+                x : ev.clientX - rect.left,
+                y : ev.clientY - rect.top,
+            };
+        }
+
+        function getMousePosition(evt) {
+            let CTM = svg.getScreenCTM();
+            return {
+                x: (evt.clientX - CTM.e) / CTM.a,
+                y: (evt.clientY - CTM.f) / CTM.d
+            };
+        }
+
+        // modifier le libelle le l'objet
+        let libelleTxt = document.getElementById("inputLabel");
+        let libelleButton = document.getElementById("libelleButton");
+
+        libelleButton.addEventListener("click", function() {
+            let y = elementCourant.nextSibling.childNodes[0]
+            elementCourant.nextSibling.removeChild(y);
+            let textNode = document.createTextNode(libelleTxt.value);
+            elementCourant.nextSibling.appendChild(textNode);
+        });
+
+
+    }
 
 });
 
