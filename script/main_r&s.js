@@ -17,6 +17,12 @@ g.dblclick(function (evt) {
         type: "rotation",
         throwProps: true
     })
+
+
+    g.click(function () {
+        rotation[0].disable();
+        c.remove();
+    });
 });
 
 
