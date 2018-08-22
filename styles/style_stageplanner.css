@@ -95,6 +95,9 @@ body {
 
 
 /* MENU (objets) */
+#drop-zone {
+    border: 4px dashed #A5A5AF;
+}
 
 #menu{
     width: 30%;
@@ -116,6 +119,24 @@ label{
 
 /* PLAN */
 
+<<<<<<< Updated upstream
+=======
+#background {
+    background-color: #57BC90;
+    float: right;
+    width: 78%;
+    height: 1600px;
+}
+
+#background svg{
+    margin: 0 auto;
+    width: 90%;
+    height: 90%;
+    display: block;
+    background-color: #A5A5AF;
+}
+
+>>>>>>> Stashed changes
 #container-svg{
     width:100%;
 }
