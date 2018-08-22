@@ -7,6 +7,8 @@ let defaultColor = "#57BC90";
 let imageInput = document.getElementById("fichier");
 let svg= document.getElementById("svg");
 let elementCourant;
+let imageCourante;
+let supprimerBtnCourant;
 
 window.addEventListener("load", startup, false);
 
@@ -112,6 +114,17 @@ function removeDragData(ev) {
     }
 }
 
+// modifier le libelle le l'objet
+let libelleTxt = document.getElementById("inputLabel");
+let libelleButton = document.getElementById("libelleButton");
+
+libelleButton.addEventListener("click", function() {
+    let y = elementCourant.nextSibling.childNodes[0]
+    elementCourant.nextSibling.removeChild(y);
+    let textNode = document.createTextNode(libelleTxt.value);
+    elementCourant.nextSibling.appendChild(textNode);
+});
+
 
 //--------------------------------------------------------------------------------
 // drag and drop HTML to svg
@@ -162,20 +175,11 @@ function drop(evt){
 
 
         //image
-        let elements = document.getElementsByClassName("draggable");
         image.setAttributeNS('http://www.w3.org/1999/xlink', 'href', strOut + "#objet");
         image.setAttributeNS(null,"x", ""+posX);
         image.setAttributeNS(null,"y", ""+posY);
         image.setAttributeNS(null,"class", "draggable");
-        image.addEventListener("click", function(event){
-            for(let e of elements){
-                if(e.previousSibling.getAttribute("visibility") === "visible"){
-                    e.previousSibling.setAttribute("visibility", "hidden");
-                }
-            }
-            supprimerBtn.setAttribute("visibility", "visible");
-            elementCourant = image;
-        });
+        let elements = document.getElementsByClassName("draggable");
         for(let e of elements){
             if(e.previousSibling.getAttribute("visibility") === "visible"){
                 e.previousSibling.setAttribute("visibility", "hidden");
@@ -187,31 +191,36 @@ function drop(evt){
         svg.appendChild(supprimerBtn);
         svg.appendChild(image);
         svg.appendChild(libelle);
+        imageCourante = image;
+        supprimerBtnCourant = supprimerBtn;
         compteur++;
-
-        supprimerBtn.addEventListener("click", function() {
-            supprimerBtn.remove();
-            image.remove();
-            libelle.remove();
-        });
+        image.addEventListener("click", setElementCourant);
+        supprimerBtn.addEventListener("click", supprimerElement);
     }
 
 }
 
+function setElementCourant(ev){
+    console.log("test");
+    let elements = document.getElementsByClassName("draggable");
+    for(let e of elements){
+        if(e.previousSibling.getAttribute("visibility") === "visible"){
+            e.previousSibling.setAttribute("visibility", "hidden");
+        }
+    }
+    let supprimerBtn = ev.target.previousSibling;
+    supprimerBtn.setAttribute("visibility", "visible");
+    elementCourant = ev.target;
+}
 
-// modifier le libelle le l'objet
-let libelleTxt = document.getElementById("inputLabel");
-let libelleButton = document.getElementById("libelleButton");
+function supprimerElement(){
+    let img = supprimerBtnCourant.nextSibling;
+    let libelle = img.nextSibling;
+    libelle.remove();
+    img.remove();
+    supprimerBtnCourant.remove();
 
-libelleButton.addEventListener("click", function() {
-    let y = elementCourant.nextSibling.childNodes[0]
-    elementCourant.nextSibling.removeChild(y);
-    let textNode = document.createTextNode(libelleTxt.value);
-    elementCourant.nextSibling.appendChild(textNode);
-});
-
-
-
+}
 
 //----------------------------------------------------------
 // get positions
