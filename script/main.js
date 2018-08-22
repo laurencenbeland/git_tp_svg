@@ -21,16 +21,16 @@ function startup() {
 }
 
 function updateFirst(event) {
-    //c.setAttribute("fill", event.target.value);
-    let bg = document.getElementById("background");
-    bg.style.backgroundColor = event.target.value;
+
+    //let bg = document.getElementById("background");
+    svg.style.backgroundColor = event.target.value;
 
 }
 
 function updateAll(event) {
-    //c.setAttribute("fill", event.target.value);
-    let bg = document.getElementById("background");
-    bg.style.backgroundColor = event.target.value;
+
+    //let bg = document.getElementById("background");
+    svg.style.backgroundColor = event.target.value;
 
 }
 
