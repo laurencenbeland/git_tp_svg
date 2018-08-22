@@ -157,7 +157,7 @@ function drop(evt){
         libelle.setAttributeNS(null,"x", ""+posX);
         libelle.setAttributeNS(null,"y", ""+posY);
         libelle.setAttributeNS(null,"font-size",30);
-        let textNode = document.createTextNode("tergdst");
+        let textNode = document.createTextNode("libelle");
         libelle.appendChild(textNode);
 
 
@@ -197,6 +197,21 @@ function drop(evt){
     }
 
 }
+
+
+// modifier le libelle le l'objet
+let libelleTxt = document.getElementById("inputLabel");
+let libelleButton = document.getElementById("libelleButton");
+
+libelleButton.addEventListener("click", function() {
+    let y = elementCourant.nextSibling.childNodes[0]
+    elementCourant.nextSibling.removeChild(y);
+    let textNode = document.createTextNode(libelleTxt.value);
+    elementCourant.nextSibling.appendChild(textNode);
+});
+
+
+
 
 //----------------------------------------------------------
 // get positions
