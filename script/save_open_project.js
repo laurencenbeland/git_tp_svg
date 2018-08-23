@@ -75,8 +75,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Supprimer un projet de la liste
     btn_remove.addEventListener("click", function (evt) {
         let key = select_projet.value;
-        localStorage.removeItem(key);
-        remove_projet_from_select();
+        if(key !== null) {
+            localStorage.removeItem(key);
+            remove_projet_from_select();
+        }
     });
 
     // Réinitialiser le plan actuel

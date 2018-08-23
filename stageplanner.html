@@ -11,21 +11,20 @@
         <!-- HEADER -->
         <header>
             <nav id="top_menu" >
-                <img class="img-responsive" src="images/stageplanner-logo2.png" alt="Logo StagePlanner">
+                <img src="images/stageplanner-logo2.png" alt="Logo StagePlanner">
                 <!-- SAVE  PLAN -->
                     <ul>
-                        <li><button id="btn_nouveau_projet" class="btn btn-sm btn-green2">Nouveau plan</button></li>
+                        <li><label id="nom_projet_en_cours"></label>
+                        <li><button id="btn_nouveau_projet" class="btn btn-lg btn-green2">Nouveau plan</button></li>
                         <li>
                             <label>Ouvrir un projet</label>
                             <select id="select_projet">
                                 <option>Sélectionnez un projet</option>
                             </select>
                         </li>
-                        <li><label id="nom_projet_en_cours"></label>
-                            <!--<input type="text" id="input_nom_projet" /></li>-->
-                        <li><button id="btn_save" class="btn btn-sm btn-green2">Sauvegarder projet</button></li>
-                        <li><button id="btn_remove" class="btn btn-sm btn-green2">Supprimer projet</button></li>
-                        <li><button id="btn_reset" class="btn btn-sm btn-green2">Réinitialiser plan</button></li>
+                        <li><button id="btn_save" class="btn btn-lg btn-green2">Sauvegarder projet</button></li>
+                        <li><button id="btn_remove" class="btn btn-lg btn-green2">Supprimer projet</button></li>
+                        <li><button id="btn_reset" class="btn btn-lg btn-green2">Réinitialiser plan</button></li>
                     </ul>
                 <!-- END SAVE PLAN -->
             </nav>
@@ -45,6 +44,7 @@
                     <div id="arriereplan" class="border">
                         <div id="divCouleur" >
                         <label>Choix d'arrière-plan</label>
+                            <hr/>
                         <input type="color" value="#e4e4e4" id="couleurPicker">
                         </div>
                         <div id="drop-zone">
@@ -57,7 +57,8 @@
 
                         <div id="divLabel">
                         <label>Modifié le libellé</label>
-                        <input type="text" id="inputLabel">
+                            <hr/>
+                            <input type="text" id="inputLabel">
                         <button id="libelleButton">Changer libellé</button>
                         </div>
                     </div>
@@ -66,6 +67,7 @@
                     <!-- OBJETS -->
                     <div class="border" id="listImages">
                         <label>Ajoutez vos objets</label>
+                        <hr/>
                         <!-- connexion -->
                         <img class="iconImg" src="images/plug-with-circular-cable.svg" draggable="true" alt="objet">
                         <img class="iconImg" src="images/blueetooth-logo.svg" draggable="true" alt="objet">

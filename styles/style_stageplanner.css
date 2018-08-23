@@ -24,10 +24,11 @@ main {
     height: 100%;
 }
 
+/* index html */
 .img-responsive {
-    width: 10%;
-    height: 7%;
+    width: 100%;
 }
+
 .btn-green {
     background-color: #57BC90;
     color: #FFFFFF;
@@ -77,10 +78,15 @@ main {
 /****** STAGE PLANNER.html ******/
 
 /* SAVE PLAN (menu) */
+#nom_projet_en_cours{
+    color: #57BC90;
+    font-size: 20px;
+}
+
 #top_menu{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 5px;
 }
 
@@ -93,7 +99,7 @@ main {
     flex-direction: row;
     justify-content: space-around;
     list-style: none;
-    width: 78%;
+    width: 70%;
 }
 
 #top_menu ul li{
@@ -115,35 +121,41 @@ main {
 
 
 input[type=color] {
-    width: 50px;
-    height: 25px;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
 }
 
 #drop-zone {
-    border: 4px dashed #A5A5AF;
+    border: 4px dashed #FFFFFF;
     padding-top: 2%;
     padding-bottom: 2%;
-    margin-top: 15%;
-    margin-bottom: 15%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    color: #000;
+    font-weight: bold;
 }
 
 #menu{
     flex: 1 1 auto;
     width: 20%;
-    background-color: #77C9D4;
+    background-color: #57BC90;
     color: white;
     margin-left: 10px;
     margin-right: 10px;
-
+    border-radius: 5px;
+    padding: 10px;
 }
 
 label{
     font-weight: bold;
     display: block;
+    color: #000000;
 }
 
 .border{
-    border: 5px outset #015249;
+    border: 5px solid #FFFFFF;
     border-radius: 5px;
     margin: 2px;
     padding: 2px;
@@ -159,6 +171,7 @@ label{
     background-color: #57BC90;
     flex: 1 1 auto;
     width: 78%;
+    border-radius: 5px;
 }
 
 #background svg{
@@ -178,6 +191,7 @@ label{
 #arriereplan, #listImages {
     position: relative;
     height: 50%;
+    padding: 5px;
 }
 
 #listImages {
@@ -186,60 +200,4 @@ label{
 }
 
 
-/***************** main.css *************/
 
-html,body{
-    margin:0;
-    padding:0;
-    height: 100%;
-}
-
-#menu_bar{
-    float:left;
-    background-color: #5b5c5e;
-    width: 20%;
-    height: 70%;
-}
-
-#menu_bar img{
-    display: inline-block;
-    width: 100%;
-    height: auto;
-}
-
-#background{
-    float: right;
-    background-color: black;
-    width: 80%;
-    height: 1600px;
-}
-
-#container-svg{
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-#background svg{
-    margin: 0 auto;
-    width: 90%;
-    height: 90%;
-    display: block;
-    background-color: white;
-}
-
-#arriereplan, #listImages {
-    position: relative;
-    height: 50%;
-    border-style: outset;
-    border-color: #353638;
-}
-
-
-/************** style.css ****************/
-
-#drop-zone {
-    border: 5px solid blue;
-    width:  200px;
-    height: 100px;
-}
