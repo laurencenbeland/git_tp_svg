@@ -1,8 +1,5 @@
 "use strict";
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// appliquer une fonction init pour les listeners sur les objets
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -15,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let btn_reset = document.getElementById("btn_reset");
 
     let label_menu = document.getElementById("nom_projet_en_cours");
-
 
     // INIT select list
     function init_options() {
@@ -79,6 +75,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+    // if(localStorage.getItem(select_projet.value) !== null || select_projet[0]){
+    //     setInterval(save_project, 1000);
+    //     console.log("saved!");
+    // }
 
 
     // OPEN SELECTED PROJECT
@@ -93,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
         brancher_listener();
         // console.log("value : ", value);
     });
-
 
     btn_remove.addEventListener("click", function (evt) {
         let key = select_projet.value;
@@ -112,10 +111,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+
     function save_project() {
 
         console.log("btn save clické");
-        console.log("RESET AVANT : ", document.getElementById("container-svg").innerHTML);
+        //console.log("RESET AVANT : ", document.getElementById("container-svg").innerHTML);
 
         let select_value = select_projet.value;
 
@@ -126,12 +126,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 alert("Votre projet est enregistré.");
                 return true;
+
             } else {
+
                 alert("Ne peut sauvegarder, pas de projet en cours.");
             }
 
-        console.log("RESET APRÈS : ", document.getElementById("container-svg").innerHTML);
 
+
+        //console.log("RESET APRÈS : ", document.getElementById("container-svg").innerHTML);
     }
 
     function remove_projet_from_select() {
@@ -165,7 +168,6 @@ document.addEventListener("DOMContentLoaded", function () {
             //i.addEventListener("click", makeDraggable);
             i.previousSibling.addEventListener("click", supprimerElement);
         }
-
     }
 
 
