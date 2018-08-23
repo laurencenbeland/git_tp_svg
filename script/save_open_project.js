@@ -146,10 +146,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert("Votre projet est enregistré.");
                 }
             }
-
         }
         console.log("RESET APRÈS : ", document.getElementById("container-svg").innerHTML);
-
 
     }
 
@@ -171,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // svg.addEventListener("drop", drop);
         // svg.addEventListener("dragover", dragover);
-        // svg.addEventListener("load", makeDraggable);
+        svg.addEventListener("load", makeDraggable);
 
         // récupéré img draggable
         let imgs = document.getElementsByClassName("draggable");
