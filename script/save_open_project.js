@@ -1,6 +1,5 @@
 "use strict";
 
-
 document.addEventListener("DOMContentLoaded", function () {
 
     let select_projet = document.getElementById("select_projet");
