@@ -15,20 +15,20 @@
                 <img class="img-responsive" src="images/stageplanner-logo2.png" alt="Logo StagePlanner">
                 
                 <!-- SAVE  PLAN -->
-                    <ul>
-                        <li><button id="btn_nouveau_projet" class="btn btn-sm btn-green2">Nouveau plan</button></li>
-                        <li>
-                            <select id="select_projet"/>
-                                <option>Choisir un projet</option>
-                            </select>
-                            <button id="btn_open" class="btn btn-sm btn-green2">Ouvrir plan</button>
-                        </li>
-                        <li><label>Nom du projet</label>
-                            <input type="text" id="input_nom_projet" /></li>
-                        <li><button id="btn_save" class="btn btn-sm btn-green2">Sauvegarder projet</button></li>
-                        <li><button id="btn_remove" class="btn btn-sm btn-green2">Supprimer projet</button></li>
-                        <li><button id="btn_reset" class="btn btn-sm btn-green2">Réinitialiser plan</button></li>
-                    </ul>
+                <ul>
+                    <li><button id="btn_nouveau_projet" class="btn btn-sm btn-green2">Nouveau plan</button></li>
+                    <li>
+                        <select id="select_projet">
+                            <option>Choisir un projet</option>
+                        </select>
+                        <button id="btn_open" class="btn btn-sm btn-green2">Ouvrir plan</button>
+                    </li>
+                    <li><label>Nom du projet</label>
+                        <input type="text" id="input_nom_projet" /></li>
+                    <li><button id="btn_save" class="btn btn-sm btn-green2">Sauvegarder projet</button></li>
+                    <li><button id="btn_remove" class="btn btn-sm btn-green2">Supprimer projet</button></li>
+                    <li><button id="btn_reset" class="btn btn-sm btn-green2">Réinitialiser plan</button></li>
+                </ul>
                 <!-- END SAVE PLAN -->
             
             </nav>
@@ -39,64 +39,65 @@
         <main>
             
             <!--<section id="section_plan">-->
-                
-                <!-- MENU -->
-                <div id="menu">
-                    
-                    <!-- PLAN -->
-                    <div id="arriereplan" class="border">
-                        <label>Choix d'arrière plan</label>
-                        <input type="color" value="#000000" id="couleurPicker">
-    
-                        <div id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-                            Deposer les fichiers ici...
-                            <div id="clickHere">
-                                ou clicker ici..
-                                <input type="file" id="fichier" name="imgfond" accept=".jpg, .jpeg, .png" />
-                            </div>
-                        </div>
-
-                        <label>Modifié le libellé</label>
-                        <input type="text" id="inputLabel">
-                        <button id="libelleButton">Changer libellé</button>
-                        
-                    </div>
-                    <!-- END PLAN -->
-                    
-                    <!-- OBJETS -->
-                    <div class="border" id="listImages">
-                        <label>Ajouter vos objets</label>
-                        <img src="images/platine.svg" draggable="true" ondragstart="drag(event)">
-                        <img src="images/trompette.svg" draggable="true" ondragstart="drag(event)">
-                        <img src="images/26304.svg" draggable="true" ondragstart="drag(event)">
-                        <img src="images/chair.svg" draggable="true" ondragstart="drag(event)">
-                        <img src="images/icon_piano.svg" draggable="true" ondragstart="drag(event)">
-                        <img src="images/music.svg" draggable="true" ondragstart="drag(event)">
-                        <img src="images/piano_orange.svg" draggable="true" ondragstart="drag(event)">
-                        <img src="images/plug-with-circular-cable.svg" draggable="true" ondragstart="drag(event)">
-                        <img src="images/sound-cable-svgrepo-com.svg" draggable="true" ondragstart="drag(event)">
-                        <img src="images/platine2.svg" draggable="true" ondragstart="drag(event)">
-                        <img src="images/violon.svg" draggable="true" ondragstart="drag(event)">
-                        <img src="images/caisson.svg" draggable="true" ondragstart="drag(event)">
-
-                    </div>
-                    <!-- END OBJETS -->
-                </div>
-                <!-- END MENU -->
-    
-                <div id="background">
-                <div id="container-svg">
-                <!-- SVG -->
-                    <svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ondrop="drop(event)" ondragover="dragover(event)" onload="makeDraggable(event)">
-                        <image id="bgImg" xlink:href="" style="width: 100%; height: 100%"/>
-                        
-                    </svg>
-                <!-- END SVG -->
-                </div>
-                </div>
-
-            <!--</section>-->
             
+            <!-- MENU -->
+            <div id="menu">
+                
+                <!-- PLAN -->
+                <div id="arriereplan" class="border">
+                    <label>Choix d'arrière plan</label>
+                    <input type="color" value="#000000" id="couleurPicker">
+                    
+                    <div id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+                        Deposer les fichiers ici...
+                        <div id="clickHere">
+                            ou clicker ici..
+                            <input type="file" id="fichier" name="imgfond" accept=".jpg, .jpeg, .png" />
+                        </div>
+                    </div>
+                    
+                    <label>Modifié le libellé</label>
+                    <input type="text" id="inputLabel">
+                    <button id="libelleButton">Changer libellé</button>
+                
+                </div>
+                <!-- END PLAN -->
+                
+                <!-- OBJETS -->
+                <div class="border" id="listImages">
+                    <label>Ajouter vos objets</label>
+                    <img src="images/platine.svg" draggable="true" ondragstart="drag(event)" alt="objet" />
+                    <img src="images/trompette.svg" draggable="true" ondragstart="drag(event)" alt="objet" />
+                    <img src="images/26304.svg" draggable="true" ondragstart="drag(event)" alt="objet" />
+                    <img src="images/chair.svg" draggable="true" ondragstart="drag(event)" alt="objet" />
+                    <img src="images/icon_piano.svg" draggable="true" ondragstart="drag(event)" alt="objet" />
+                    <img src="images/music.svg" draggable="true" ondragstart="drag(event)" alt="objet" />
+                    <img src="images/piano_orange.svg" draggable="true" ondragstart="drag(event)" alt="objet" />
+                    <img src="images/plug-with-circular-cable.svg" draggable="true" ondragstart="drag(event)" alt="objet" />
+                    <img src="images/sound-cable-svgrepo-com.svg" draggable="true" ondragstart="drag(event)" alt="objet" />
+                    <img src="images/platine2.svg" draggable="true" ondragstart="drag(event)" alt="objet" />
+                    <img src="images/violon.svg" draggable="true" ondragstart="drag(event)" alt="objet" />
+                    <img src="images/caisson.svg" draggable="true" ondragstart="drag(event)" alt="objet" />
+                
+                </div>
+                <!-- END OBJETS -->
+            </div>
+            <!-- END MENU -->
+            
+            <div id="background">
+                <div id="container-svg">
+                    <!-- SVG -->
+                    <svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+                        
+                        <image id="bgImg" xlink:href="" width="100%" height="100%" style="width: 100%; height: 100%"/>
+                    
+                    </svg>
+                    <!-- END SVG -->
+                </div>
+            </div>
+            
+            <!--</section>-->
+        
         </main>
         <!-- END MAIN -->
         

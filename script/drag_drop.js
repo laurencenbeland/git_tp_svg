@@ -68,6 +68,7 @@ function getMousePosition(evt) {
 // drag and drop in svg
 
 function makeDraggable(evt) {
+
     let svgElem = evt.target;
     svgElem.addEventListener('mousedown', startDrag);
     svgElem.addEventListener('mousemove', drag2);
