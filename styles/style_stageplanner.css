@@ -44,7 +44,6 @@ main {
     border: 2px solid #57BC90;
     font-weight: bold;
     display: block;
-    margin: 50px auto;
 }
 
 .btn-green2 {
@@ -62,7 +61,25 @@ main {
     border: 2px solid #57BC90;
     font-weight: bold;
     display: block;
-    margin: 5px;
+
+}
+
+.btn-grey {
+    background-color: #FFFFFF;
+    color: #000000;
+    width: 100%;
+    font-weight: bold;
+    display: block;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.btn-grey:hover {
+    background-color: #57BC90;
+    color: #000000;
+    border: 2px solid #f1f1f1;
+    font-weight: bold;
+    display: block;
 
 }
 
