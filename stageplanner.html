@@ -39,15 +39,16 @@
         <main>
             
             <!--<section id="section_plan">-->
-                
+            <div class="box">
                 <!-- MENU -->
                 <div id="menu">
                     
                     <!-- PLAN -->
                     <div id="arriereplan" class="border">
+                        <div id="divCouleur" >
                         <label>Choix d'arrière plan</label>
                         <input type="color" value="#000000" id="couleurPicker">
-    
+                        </div>
                         <div id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
                             Deposer les fichiers ici...
                             <div id="clickHere">
@@ -56,10 +57,11 @@
                             </div>
                         </div>
 
+                        <div id="divLabel">
                         <label>Modifié le libellé</label>
                         <input type="text" id="inputLabel">
                         <button id="libelleButton">Changer libellé</button>
-                        
+                        </div>
                     </div>
                     <!-- END PLAN -->
                     
@@ -96,7 +98,7 @@
                 </div>
 
             <!--</section>-->
-            
+            </div>
         </main>
         <!-- END MAIN -->
         
