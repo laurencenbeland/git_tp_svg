@@ -142,7 +142,7 @@ let listImg = document.getElementsByClassName("iconImg");
 let compteur = 0;
 
 for (let i = 0; i < listImg.length; i++) {
-    listImg[i].addEventListener("dragstart", function() { drag(evt)});
+    listImg[i].addEventListener("dragstart", drag);
 }
 
 function drag(evt){
