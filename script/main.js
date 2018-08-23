@@ -150,11 +150,9 @@ function drag(evt){
     evt.dataTransfer.setData('text/plain', valeur);
 }
 
-
 function dragover(evt){
     evt.preventDefault();
 }
-
 
 function drop(evt){
     evt.preventDefault();

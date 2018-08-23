@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // initialiser la liste des projets sauvegardés dès l'ouverture de la page
     init_options();
+    dernier_projet_saved();
     startup();
 
     // Création nouveau plan
@@ -57,11 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
         save_project();
     });
 
-    // if(localStorage.getItem(select_projet.value) !== null || select_projet[0]){
-    //     setInterval(save_project, 1000);
-    //     console.log("saved!");
-    // }
-
     // Ouvrir un autre projet
     select_projet.addEventListener("change", function (evt) {
         let select_value = select_projet.value;
@@ -91,15 +87,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Enregistrer le projet dans le localstorage
     function save_project() {
-
         console.log("btn save clické");
-        console.log("RESET AVANT : ", document.getElementById("container-svg").innerHTML);
-
         let select_value = select_projet.value;
             if (localStorage.getItem(select_value) !== null) {
                 let new_svg = document.getElementById("container-svg").innerHTML;
                 localStorage.setItem(select_value, new_svg);
-                alert("Votre projet est enregistré.");
                 return true;
             } else {
                 let nom_nouveau_projet_entame = prompt('Nom du nouveau projet');
@@ -117,12 +109,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     opt.textContent = nom_nouveau_projet_entame;
                     select_projet.add(opt, select_projet.options[select_projet.options.length + 1]);
                     select_projet.value = nom_nouveau_projet_entame;
-                    alert("Votre nouveau projet a été enregistré.");
                     label_menu.innerHTML = nom_nouveau_projet_entame;
                     return true;
                 }
             }
-        console.log("RESET APRÈS : ", document.getElementById("container-svg").innerHTML);
     }
 
     // Retirer un projet de la liste select
@@ -136,26 +126,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Rebrancher les listeners après la sauvegarde des informations
     function brancher_listener() {
-
-        console.log("entré dans brancher listener");
-
         svg = document.getElementById("svg");
-
-        // svg.addEventListener("drop", drop);
-        // svg.addEventListener("dragover", dragover);
         svg.addEventListener("click", makeDraggable);
-        //svg.addEventListener("mousedown", makeDraggable);
-
         // récupéré img draggable
         let imgs = document.getElementsByClassName("draggable");
-
         for (let i of imgs) {
             i.addEventListener("drag", drag);
             i.addEventListener("click", setElementCourant);
+            i.addEventListener("dragstart", drag);
             //i.addEventListener("click", makeDraggable);
             i.previousSibling.addEventListener("click", supprimerElement);
         }
     }
+
+    // Aller chercher le dernier projet/plan créé
+    function dernier_projet_saved(){
+        let cpt = 0;
+        for (let i = 0; i < localStorage.length; i++) {
+            if (cpt === localStorage.length-1) {
+                let last_key = localStorage.key(i);
+                console.log("last element: ", last_key);
+                let last_value = localStorage.getItem(last_key);
+                select_projet.value = last_key;
+                label_menu.innerHTML = last_key;
+                document.getElementById("container-svg").innerHTML = last_value;
+                brancher_listener();
+                return true;
+            }
+            cpt++;
+        }
+    }
+
+    // Enregistrer à chaque seconde
+    if(localStorage.getItem(select_projet.value) !== null || select_projet[0]){
+        setInterval(save_project, 1000);
+        console.log("saved!");
+    }
+
 
 });
 
