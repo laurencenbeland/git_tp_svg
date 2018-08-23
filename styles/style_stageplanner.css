@@ -11,7 +11,10 @@ html, body {
     height: 100%;
     background-color: #FFFFFF;
     margin: 0;
-    font-size: 125%;
+}
+
+main {
+    height: 83%;
 }
 
 .box {
@@ -110,9 +113,10 @@ html, body {
 
 /* MENU (objets) */
 
+
 input[type=color] {
-    width: 100px;
-    height: 50px;
+    width: 50px;
+    height: 25px;
 }
 
 #drop-zone {
@@ -143,6 +147,10 @@ label{
     border-radius: 5px;
     margin: 2px;
     padding: 2px;
+}
+
+.iconImg {
+    width: 30%;
 }
 
 /* PLAN */
