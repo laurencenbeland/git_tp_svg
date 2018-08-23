@@ -9,6 +9,10 @@ let svg= document.getElementById("svg");
 let elementCourant;
 let imageCourante;
 let supprimerBtnCourant;
+let dropzone = document.getElementById("drop-zone");
+
+dropzone.addEventListener("drop", function () {dropHandler(event)});
+dropzone.addEventListener("dragover", function () {dragOverHandler(event)});
 
 window.addEventListener("load", startup, false);
 
