@@ -6,9 +6,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    svg.addEventListener("drop", drop);
-    svg.addEventListener("dragover", dragover);
-    svg.addEventListener("load", makeDraggable);
 
     let select_projet = document.getElementById("select_projet");
 
@@ -89,12 +86,11 @@ document.addEventListener("DOMContentLoaded", function () {
         let select_value = select_projet.value;
         let key = select_value;
 
-        brancher_listener();
-
         // console.log("key is open :", key);
         // console.log("project " + key + " est ouvert");
         let value = localStorage.getItem(key);
         document.getElementById("container-svg").innerHTML = value;
+        brancher_listener();
         // console.log("value : ", value);
         input.value = " ";
     });
@@ -173,27 +169,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         svg = document.getElementById("svg");
 
-        svg.addEventListener("drop", drop);
-        svg.addEventListener("dragover", dragover);
-        svg.addEventListener("load", makeDraggable);
+        // svg.addEventListener("drop", drop);
+        // svg.addEventListener("dragover", dragover);
+        // svg.addEventListener("load", makeDraggable);
 
-        let imgs = document.getElementsByTagName("img");
+        // récupéré img draggable
+        let imgs = document.getElementsByClassName("draggable");
 
         for (let i of imgs) {
             i.addEventListener("drag", drag);
-            i.addEventListener("load", makeDraggable);
+            i.addEventListener("click", makeDraggable);
+            i.previousSibling.addEventListener("click", supprimerElement);
         }
-
-        // modifier le libelle le l'objet
-        let libelleTxt = document.getElementById("inputLabel");
-        let libelleButton = document.getElementById("libelleButton");
-
-        libelleButton.addEventListener("click", function () {
-            let y = elementCourant.nextSibling.childNodes[0]
-            elementCourant.nextSibling.removeChild(y);
-            let textNode = document.createTextNode(libelleTxt.value);
-            elementCourant.nextSibling.appendChild(textNode);
-        });
 
     }
 
