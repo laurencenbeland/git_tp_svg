@@ -70,11 +70,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // btn modifier nom projet (plutot que de créer un novueau projet a partir du input...
+
 
     // SAVE PLAN
     btn_save.addEventListener("click", function (evt) {
         save_project();
     });
+
+    
 
 
     // OPEN SELECTED PROJECT
