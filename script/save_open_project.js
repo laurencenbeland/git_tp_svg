@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if(nom_nouveau_projet === null || nom_nouveau_projet == ""){
             alert('Entrez un nom pour votre nouveau projet.');
             return false;
+
         } else if (nom_nouveau_projet != null) {
 
             let container_svg = document.getElementById("container-svg");
@@ -57,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
             opt.value = nom_nouveau_projet;
             opt.textContent = nom_nouveau_projet;
             select_projet.add(opt, select_projet.options[select_projet.options.length + 1]);
+            select_projet.value = nom_nouveau_projet;
             alert("Votre nouveau projet a été créé et enregistré.");
 
             label_menu.innerHTML = nom_nouveau_projet;
@@ -115,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function save_project() {
 
         console.log("btn save clické");
-        //console.log("RESET AVANT : ", document.getElementById("container-svg").innerHTML);
+        console.log("RESET AVANT : ", document.getElementById("container-svg").innerHTML);
 
         let select_value = select_projet.value;
 
@@ -132,9 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("Ne peut sauvegarder, pas de projet en cours.");
             }
 
-
-
-        //console.log("RESET APRÈS : ", document.getElementById("container-svg").innerHTML);
+        console.log("RESET APRÈS : ", document.getElementById("container-svg").innerHTML);
     }
 
     function remove_projet_from_select() {
