@@ -125,6 +125,8 @@ libelleButton.addEventListener("click", function() {
     elementCourant.nextSibling.removeChild(y);
     let textNode = document.createTextNode(libelleTxt.value);
     elementCourant.nextSibling.appendChild(textNode);
+
+    libelleTxt.value = '';
 });
 
 
