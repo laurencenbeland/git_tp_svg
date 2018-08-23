@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let btn_remove = document.getElementById("btn_remove");
     let btn_reset = document.getElementById("btn_reset");
 
-    let input = document.getElementById("input_nom_projet");
-    let input_nom_projet = " ";
+    let label_menu = document.getElementById("nom_projet_en_cours");
+
 
     // INIT select list
     function init_options() {
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (nom_nouveau_projet != null) {
 
             let container_svg = document.getElementById("container-svg");
-            container_svg.innerHTML = '<svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><image id="bgImg" xlink:href="" width="100%" height="100%" style="width: 100%; height: 100%"/></svg>';
+            container_svg.innerHTML = '<svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ondrop="drop(event)" ondragover="dragover(event)" onload="makeDraggable(event)"><image id="bgImg" xlink:href="" style="width: 100%; height: 100%"/></svg>';
 
             brancher_listener();
 
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
             select_projet.add(opt, select_projet.options[select_projet.options.length + 1]);
             alert("Votre nouveau projet a été créé et enregistré.");
 
-
+            label_menu.innerHTML = nom_nouveau_projet;
 
             return true;
         }
@@ -85,14 +85,13 @@ document.addEventListener("DOMContentLoaded", function () {
     select_projet.addEventListener("change", function (evt) {
         let select_value = select_projet.value;
         let key = select_value;
-
+        label_menu.innerHTML = key;
         // console.log("key is open :", key);
         // console.log("project " + key + " est ouvert");
         let value = localStorage.getItem(key);
         document.getElementById("container-svg").innerHTML = value;
         brancher_listener();
         // console.log("value : ", value);
-        input.value = " ";
     });
 
 
@@ -106,8 +105,9 @@ document.addEventListener("DOMContentLoaded", function () {
     btn_reset.addEventListener("click", function (evt) {
         console.log("RESET AVANT : ", document.getElementById("container-svg").innerHTML);
         let container_svg = document.getElementById("container-svg");
-        container_svg.innerHTML = '<svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><image id="bgImg" xlink:href="" width="100%" height="100%" style="width: 100%; height: 100%"/></svg>'
+        container_svg.innerHTML = '<svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ondrop="drop(event)" ondragover="dragover(event)" onload="makeDraggable(event)"><image id="bgImg" xlink:href="" style="width: 100%; height: 100%"/></svg>'
         svg.style.backgroundColor = "#FFFFFF";
+        brancher_listener();
         console.log("RESET APRÈS : ", document.getElementById("container-svg").innerHTML);
     });
 
@@ -118,38 +118,19 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("RESET AVANT : ", document.getElementById("container-svg").innerHTML);
 
         let select_value = select_projet.value;
-        input_nom_projet = input.value;
-
-        if (input_nom_projet !== "") {
 
             if (localStorage.getItem(select_value) !== null) {
 
                 let new_svg = document.getElementById("container-svg").innerHTML;
                 localStorage.setItem(select_value, new_svg);
 
+                alert("Votre projet est enregistré.");
+                return true;
             } else {
-
-                let opt = document.createElement("option");
-
-                opt.value = input_nom_projet;
-                opt.textContent = input_nom_projet;
-
-                let content_to_save = document.getElementById("container-svg").innerHTML;
-                console.log(content_to_save);
-
-                // localStorage Key, Value
-                if (input_nom_projet.value === "") {
-                    alert("Veuillez inscrire un nom de projet.");
-                } else {
-                    localStorage.setItem(input_nom_projet, content_to_save)
-                    select_projet.add(opt, select_projet.options[select_projet.options.length + 1]);
-                    alert("Votre projet est enregistré.");
-                }
+                alert("Ne peut sauvegarder, pas de projet en cours.");
             }
 
-        }
         console.log("RESET APRÈS : ", document.getElementById("container-svg").innerHTML);
-
 
     }
 
@@ -157,8 +138,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!select_projet.options[0].selected) {
             console.log(select_projet.value, " a été retiré du select!");
             select_projet.options[select_projet.selectedIndex] = null;
+            label_menu.innerHTML = "";
         } else {
-            console.log("tu peux po effacer choisir un projet yo");
+            console.log("tu peux po effacer 'seletionner un projet' yo");
         }
     }
 
