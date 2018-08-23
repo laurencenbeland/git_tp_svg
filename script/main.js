@@ -138,7 +138,12 @@ libelleButton.addEventListener("click", function() {
 // drag and drop HTML to svg
 
 let objet = document.querySelector("#objet");
+let listImg = document.getElementsByClassName("iconImg");
 let compteur = 0;
+
+for (let i = 0; i < listImg.length; i++) {
+    listImg[i].addEventListener("dragstart", function() { drag(evt)});
+}
 
 function drag(evt){
     let valeur = evt.target.src;
