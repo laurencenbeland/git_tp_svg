@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------------
 // options de personnalisation
 let couleurPicker;
-let defaultColor = "#A5A5AF";
+let defaultColor = "#e4e4e4";
 let imageInput = document.getElementById("fichier");
 let svg= document.getElementById("svg");
 let elementCourant;

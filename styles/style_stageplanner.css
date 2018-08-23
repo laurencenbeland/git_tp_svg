@@ -9,7 +9,7 @@ Grey  : #f1f1f1 (background)
 
 html, body {
     height: 100%;
-    background-color: #FFFFFF;
+    background-color: #e4e4e4;
     margin: 0;
 }
 
@@ -166,7 +166,7 @@ label{
     width: 90%;
     height: 90%;
     display: block;
-    background-color: #A5A5AF;
+    background-color: #e4e4e4;
 }
 
 #container-svg{
@@ -183,4 +183,63 @@ label{
 #listImages {
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+
+/***************** main.css *************/
+
+html,body{
+    margin:0;
+    padding:0;
+    height: 100%;
+}
+
+#menu_bar{
+    float:left;
+    background-color: #5b5c5e;
+    width: 20%;
+    height: 70%;
+}
+
+#menu_bar img{
+    display: inline-block;
+    width: 100%;
+    height: auto;
+}
+
+#background{
+    float: right;
+    background-color: black;
+    width: 80%;
+    height: 1600px;
+}
+
+#container-svg{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#background svg{
+    margin: 0 auto;
+    width: 90%;
+    height: 90%;
+    display: block;
+    background-color: white;
+}
+
+#arriereplan, #listImages {
+    position: relative;
+    height: 50%;
+    border-style: outset;
+    border-color: #353638;
+}
+
+
+/************** style.css ****************/
+
+#drop-zone {
+    border: 5px solid blue;
+    width:  200px;
+    height: 100px;
 }
