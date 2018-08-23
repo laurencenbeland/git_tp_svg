@@ -211,6 +211,7 @@ function setElementCourant(ev){
     let supprimerBtn = ev.target.previousSibling;
     supprimerBtn.setAttribute("visibility", "visible");
     elementCourant = ev.target;
+    supprimerBtnCourant = supprimerBtn;
 }
 
 function supprimerElement(){
