@@ -39,20 +39,28 @@
         <main>
             
             <!--<section id="section_plan">-->
-            
-            <!-- MENU -->
-            <div id="menu">
-                
-                <!-- PLAN -->
-                <div id="arriereplan" class="border">
-                    <label>Choix d'arrière plan</label>
-                    <input type="color" value="#000000" id="couleurPicker">
+            <div class="box">
+                <!-- MENU -->
+                <div id="menu">
                     
-                    <div id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-                        Deposer les fichiers ici...
-                        <div id="clickHere">
-                            ou clicker ici..
-                            <input type="file" id="fichier" name="imgfond" accept=".jpg, .jpeg, .png" />
+                    <!-- PLAN -->
+                    <div id="arriereplan" class="border">
+                        <div id="divCouleur" >
+                        <label>Choix d'arrière plan</label>
+                        <input type="color" value="#000000" id="couleurPicker">
+                        </div>
+                        <div id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+                            Deposer les fichiers ici...
+                            <div id="clickHere">
+                                ou clicker ici..
+                                <input type="file" id="fichier" name="imgfond" accept=".jpg, .jpeg, .png" />
+                            </div>
+                        </div>
+
+                        <div id="divLabel">
+                        <label>Modifié le libellé</label>
+                        <input type="text" id="inputLabel">
+                        <button id="libelleButton">Changer libellé</button>
                         </div>
                     </div>
                     
@@ -97,7 +105,7 @@
             </div>
             
             <!--</section>-->
-        
+            </div>
         </main>
         <!-- END MAIN -->
         
