@@ -131,11 +131,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
             } else {
 
-                alert("Ne peut sauvegarder, pas de projet en cours.");
+                //alert("Ne peut sauvegarder, pas de projet en cours.");
+
+                let nom_nouveau_projet_entame = prompt('Nom du nouveau projet');
+
+                if(nom_nouveau_projet_entame === null || nom_nouveau_projet_entame == ""){
+                    alert('Entrez un nom pour votre nouveau projet.');
+                    return false;
+
+                } else if (nom_nouveau_projet_entame != null) {
+
+                    // enregistrer le nouveau svg entamé
+                    let current_svg = document.getElementById("container-svg").innerHTML;
+
+                    // ajouter au storage
+                    localStorage.setItem(nom_nouveau_projet_entame, current_svg);
+
+                    // ajouter à la liste de select
+                    let opt = document.createElement("option");
+                    opt.value = nom_nouveau_projet_entame;
+                    opt.textContent = nom_nouveau_projet_entame;
+                    select_projet.add(opt, select_projet.options[select_projet.options.length + 1]);
+                    select_projet.value = nom_nouveau_projet_entame;
+                    alert("Votre nouveau projet a été enregistré.");
+
+                    label_menu.innerHTML = nom_nouveau_projet_entame;
+
+                    return true;
+                }
+
             }
 
         console.log("RESET APRÈS : ", document.getElementById("container-svg").innerHTML);
     }
+
+
+
 
     function remove_projet_from_select() {
         if (!select_projet.options[0].selected) {
