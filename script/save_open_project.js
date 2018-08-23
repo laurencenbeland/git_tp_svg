@@ -40,8 +40,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // NOUVEAU PLAN
     btn_nouveau_projet.addEventListener("click", function (evt) {
-        let container_svg = document.getElementById("container-svg");
-        container_svg.innerHTML = '<svg viewBox="0 0 150 150" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" id="svg"><image id="bgImg" xlink:href="" style="width: 100%; height: 100%"/></svg>';
+
+        let nom_nouveau_projet = prompt('Nom du nouveau projet');
+
+        if(nom_nouveau_projet === null || nom_nouveau_projet == ""){
+            alert('Entrez un nom pour votre nouveau projet.');
+            return false;
+        } else if (nom_nouveau_projet != null) {
+
+            let container_svg = document.getElementById("container-svg");
+            container_svg.innerHTML = '<svg viewBox="0 0 150 150" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" id="svg"><image id="bgImg" xlink:href="" style="width: 100%; height: 100%"/></svg>';
+
+            // enregistrer le nouveau svg empty
+            let empty_svg = document.getElementById("container-svg").innerHTML;
+
+            // ajouter au storage
+            localStorage.setItem(nom_nouveau_projet, empty_svg);
+
+            // ajouter à la liste de select
+            let opt = document.createElement("option");
+            opt.value = nom_nouveau_projet;
+            opt.textContent = nom_nouveau_projet;
+            select_projet.add(opt, select_projet.options[select_projet.options.length + 1]);
+            alert("Votre nouveau projet a été créé et enregistré.");
+
+            brancher_listener();
+
+            return true;
+        }
     });
 
 
@@ -60,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let value = localStorage.getItem(key);
         document.getElementById("container-svg").innerHTML = value;
         // console.log("value : ", value);
-
         input.value = " ";
 
         brancher_listener();
@@ -77,9 +102,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     btn_reset.addEventListener("click", function (evt) {
         console.log("RESET AVANT : ", document.getElementById("container-svg").innerHTML);
-        // * * * * * * * * * * * * ** * * * ** * * *
-        // * * * * REVOIR SVG REAPPLIQUE
-        // * * * * * * * * * * * * ** * * * ** * * *
         let container_svg = document.getElementById("container-svg");
         container_svg.innerHTML = '<svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><image id="bgImg" xlink:href="" width="100%" height="100%" style="width: 100%; height: 100%"/></svg>'
         svg.style.backgroundColor = "#FFFFFF";
@@ -152,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         for (let i of imgs) {
             i.addEventListener("drag", drag);
-            i.addEventListener("dragover", makeDraggable);
+            //i.addEventListener("dragover", makeDraggable);
         }
 
         // modifier le libelle le l'objet
