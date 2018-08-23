@@ -24,6 +24,7 @@ function updateFirst(event) {
 
     //let bg = document.getElementById("background");
     svg.style.backgroundColor = event.target.value;
+    svg.style.backgroundImage = "none";
 
 }
 
@@ -31,6 +32,7 @@ function updateAll(event) {
 
     //let bg = document.getElementById("background");
     svg.style.backgroundColor = event.target.value;
+    svg.style.backgroundImage = "none";
 
 }
 
