@@ -211,6 +211,7 @@ function setElementCourant(ev){
     let supprimerBtn = ev.target.previousSibling;
     supprimerBtn.setAttribute("visibility", "visible");
     elementCourant = ev.target;
+    supprimerBtnCourant = supprimerBtn;
 }
 
 function supprimerElement(){
@@ -245,6 +246,9 @@ function getMousePosition(evt) {
 // drag and drop in svg
 
 function makeDraggable(evt) {
+
+    console.log('entré makeDraggable function');
+
     let svgElem = evt.target;
     svgElem.addEventListener('mousedown', startDrag);
     svgElem.addEventListener('mousemove', drag2);
