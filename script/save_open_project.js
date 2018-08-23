@@ -3,23 +3,18 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-
     let select_projet = document.getElementById("select_projet");
-
     let btn_nouveau_projet = document.getElementById("btn_nouveau_projet");
     let btn_save = document.getElementById("btn_save");
     let btn_remove = document.getElementById("btn_remove");
     let btn_reset = document.getElementById("btn_reset");
-
     let label_menu = document.getElementById("nom_projet_en_cours");
 
-    // INIT select list
+    // Initialisation de la select list
     function init_options() {
         // Liste des projets (select)
         for (let i = 0; i < localStorage.length; i++) {
             let key = localStorage.key(i);
-            //let value = localStorage[key];
-            //console.log(key);
             let opt = document.createElement("option");
             opt.value = key;
             opt.innerHTML = key;
@@ -88,32 +83,27 @@ document.addEventListener("DOMContentLoaded", function () {
         let select_value = select_projet.value;
         let key = select_value;
         label_menu.innerHTML = key;
-        // console.log("key is open :", key);
-        // console.log("project " + key + " est ouvert");
         let value = localStorage.getItem(key);
         document.getElementById("container-svg").innerHTML = value;
         brancher_listener();
-        // console.log("value : ", value);
     });
 
+    // DELETE PROJECT
     btn_remove.addEventListener("click", function (evt) {
         let key = select_projet.value;
         localStorage.removeItem(key);
         remove_projet_from_select();
     });
 
-
+    // RESET PLAN OF THE PROJECT
     btn_reset.addEventListener("click", function (evt) {
-        console.log("RESET AVANT : ", document.getElementById("container-svg").innerHTML);
         let container_svg = document.getElementById("container-svg");
         container_svg.innerHTML = '<svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ondrop="drop(event)" ondragover="dragover(event)" onload="makeDraggable(event)"><image id="bgImg" xlink:href="" style="width: 100%; height: 100%"/></svg>'
         svg.style.backgroundColor = "#FFFFFF";
         brancher_listener();
-        console.log("RESET APRÈS : ", document.getElementById("container-svg").innerHTML);
     });
 
-
-
+    //
     function save_project() {
 
         console.log("btn save clické");
@@ -125,13 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 let new_svg = document.getElementById("container-svg").innerHTML;
                 localStorage.setItem(select_value, new_svg);
-
                 alert("Votre projet est enregistré.");
                 return true;
 
             } else {
-
-                //alert("Ne peut sauvegarder, pas de projet en cours.");
 
                 let nom_nouveau_projet_entame = prompt('Nom du nouveau projet');
 
@@ -143,10 +130,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // enregistrer le nouveau svg entamé
                     let current_svg = document.getElementById("container-svg").innerHTML;
-
                     // ajouter au storage
                     localStorage.setItem(nom_nouveau_projet_entame, current_svg);
-
                     // ajouter à la liste de select
                     let opt = document.createElement("option");
                     opt.value = nom_nouveau_projet_entame;
@@ -154,7 +139,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     select_projet.add(opt, select_projet.options[select_projet.options.length + 1]);
                     select_projet.value = nom_nouveau_projet_entame;
                     alert("Votre nouveau projet a été enregistré.");
-
                     label_menu.innerHTML = nom_nouveau_projet_entame;
 
                     return true;
@@ -173,8 +157,6 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(select_projet.value, " a été retiré du select!");
             select_projet.options[select_projet.selectedIndex] = null;
             label_menu.innerHTML = "";
-        } else {
-            console.log("tu peux po effacer 'seletionner un projet' yo");
         }
     }
 
