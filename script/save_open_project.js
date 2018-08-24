@@ -121,7 +121,6 @@ document.addEventListener("DOMContentLoaded", function () {
             opt.textContent = nom_nouveau_projet;
             select_projet.add(opt, select_projet.options[select_projet.options.length + 1]);
             select_projet.value = nom_nouveau_projet;
-            alert("Votre nouveau projet a été créé et enregistré.");
             label_menu.innerHTML = nom_nouveau_projet;
             return true;
         }
