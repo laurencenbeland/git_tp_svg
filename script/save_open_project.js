@@ -30,10 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
         creer_nouveau_projet();
     });
 
-    // Sauvegarde du plan
-    btn_save.addEventListener("click", function (evt) {
-        save_project();
-    });
 
     // Ouvrir un autre projet
     select_projet.addEventListener("change", function (evt) {
