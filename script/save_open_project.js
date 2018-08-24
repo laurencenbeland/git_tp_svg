@@ -27,31 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Création nouveau plan
     btn_nouveau_projet.addEventListener("click", function (evt) {
-        let nom_nouveau_projet = prompt('Nom du nouveau projet');
-        if(nom_nouveau_projet === null || nom_nouveau_projet == ""){
-            alert('Entrez un nom pour votre nouveau projet.');
-            return false;
-        } else if (nom_nouveau_projet != null) {
-            let container_svg = document.getElementById("container-svg");
-            container_svg.innerHTML = '<svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ondrop="drop(event)" ondragover="dragover(event)" onload="makeDraggable(event)"><image id="bgImg" xlink:href="" style="width: 100%; height: 100%"/></svg>';
-            brancher_listener();
-            // enregistrer le nouveau svg empty
-            let empty_svg = document.getElementById("container-svg").innerHTML;
-            // ajouter au storage
-            localStorage.setItem(nom_nouveau_projet, empty_svg);
-            // ajouter à la liste de select
-            let opt = document.createElement("option");
-            opt.value = nom_nouveau_projet;
-            opt.textContent = nom_nouveau_projet;
-            select_projet.add(opt, select_projet.options[select_projet.options.length + 1]);
-            select_projet.value = nom_nouveau_projet;
-            alert("Votre nouveau projet a été créé et enregistré.");
-            label_menu.innerHTML = nom_nouveau_projet;
-            return true;
-        }
+        creer_nouveau_projet();
     });
-
-    // btn modifier nom projet (plutot que de créer un novueau projet a partir du input...
 
     // Sauvegarde du plan
     btn_save.addEventListener("click", function (evt) {
@@ -120,7 +97,33 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!select_projet.options[0].selected) {
             console.log(select_projet.value, " a été retiré du select!");
             select_projet.options[select_projet.selectedIndex] = null;
-            label_menu.innerHTML = "";
+            dernier_projet_saved();
+        }
+    }
+
+    // Créer nouveau projet
+    function creer_nouveau_projet(){
+        let nom_nouveau_projet = prompt('Nom du nouveau projet');
+        if(nom_nouveau_projet === null || nom_nouveau_projet == ""){
+            alert('Entrez un nom pour votre nouveau projet.');
+            return false;
+        } else if (nom_nouveau_projet != null) {
+            let container_svg = document.getElementById("container-svg");
+            container_svg.innerHTML = '<svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ondrop="drop(event)" ondragover="dragover(event)" onload="makeDraggable(event)"><image id="bgImg" xlink:href="" style="width: 100%; height: 100%"/></svg>';
+            brancher_listener();
+            // enregistrer le nouveau svg empty
+            let empty_svg = document.getElementById("container-svg").innerHTML;
+            // ajouter au storage
+            localStorage.setItem(nom_nouveau_projet, empty_svg);
+            // ajouter à la liste de select
+            let opt = document.createElement("option");
+            opt.value = nom_nouveau_projet;
+            opt.textContent = nom_nouveau_projet;
+            select_projet.add(opt, select_projet.options[select_projet.options.length + 1]);
+            select_projet.value = nom_nouveau_projet;
+            alert("Votre nouveau projet a été créé et enregistré.");
+            label_menu.innerHTML = nom_nouveau_projet;
+            return true;
         }
     }
 
@@ -143,6 +146,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function dernier_projet_saved(){
         let cpt = 0;
         for (let i = 0; i < localStorage.length; i++) {
+            if(localStorage.length <= 0){
+                creer_nouveau_projet();
+            }
+
             if (cpt === localStorage.length-1) {
                 let last_key = localStorage.key(i);
                 console.log("last element: ", last_key);
